@@ -32,9 +32,9 @@ async def cmd_start(message: types.Message):
                                    'delete_chat_photo'])
 async def deleting_messages(msg: types.Message):
     if msg.new_chat_members:
-        await msg.answer("""Ushbu guruhga xush kelibsiz! <a href="tg://user?id={}">{}</a>\n
-Iltimos Wikistipendiya marafoni haqida <a href="https://www.youtube.com/c/UzWiki">ushbu havola</a> orqali 
-o'rganib chiqing""".
+        await msg.answer("""Ushbu guruhga xush kelibsiz, <a href="tg://user?id={}">{}</a>\n
+Iltimos, WikiStipendiya marafoni haqida <a href="https://www.youtube.com/c/UzWiki">ushbu havola</a> orqali 
+tanishib chiqing""".
                          format(msg.new_chat_members[0].id, msg.from_user.full_name),
                          parse_mode="HTML")
     await msg.delete()
@@ -48,19 +48,19 @@ async def some_error(msg, error):
 @dp.message_handler()
 async def some_text(message: types.Message):
     if message.chat.type == 'private':
-        await message.answer("Iltimos qandaydir savolingiz bo'lsa @uzwikichat da yozib qoldirsangiz!")
+        await message.answer("Iltimos, qandaydir savolingiz bo'lsa @uzwikichat da yozib qoldirsangiz!")
     else:
         admins_list = [admin.user.id for admin in await bot.get_chat_administrators(chat_id=message.chat.id)]
         if message.from_user.id not in admins_list:
             if message.text.find("wiki") == -1:
                 if '@' in message.text:  # Удаление сообщений с тегами (@тег)
-                    await message.answer("{} \nIltimos reklama tarqatmang".format(message.from_user.get_mention()),
+                    await message.answer("{} \nIltimos, reklama tarqatmang!".format(message.from_user.get_mention()),
                                          parse_mode="HTML")
                     await message.delete()
 
                 for entity in message.entities:  # Удаление сообщений с ссылками
                     if entity.type in ["url", "text_link"]:
-                        await message.answer("{} \nIltimos reklama tarqatmang".format(message.from_user.get_mention()),
+                        await message.answer("{} \nIltimos, reklama tarqatmang!".format(message.from_user.get_mention()),
                                              parse_mode="HTML")
                         await message.delete()
 
