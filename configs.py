@@ -31,7 +31,7 @@ all_content_types = ("text", "sticker", "photo",
                      "voice", "document", "video", "video_note")
 
 
-ignore_links = ('wikistipendiya', 'uzbekwikipedia')
+ignore_links = ('wikistipendiya', 'uzbekwikipedia', 'nurqulminbari', 'uzwikinewpages')
 
 
 # Logging
