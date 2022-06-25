@@ -27,8 +27,11 @@ collusers = cluster.uzwikichat.users
 
 
 # Telegam supported types
-all_content_types = ["text", "sticker", "photo",
-                     "voice", "document", "video", "video_note"]
+all_content_types = ("text", "sticker", "photo",
+                     "voice", "document", "video", "video_note")
+
+
+ignore_links = ('wikistipendiya', 'uzbekwikipedia')
 
 
 # Logging

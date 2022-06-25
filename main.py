@@ -50,8 +50,9 @@ async def some_text(message: types.Message):
     if message.chat.type == 'private':
         await message.answer("Iltimos, qandaydir savolingiz bo'lsa @uzwikichat da yozib qoldirsangiz!")
     else:
+        if message.forward_from_chat and message.forward_from_chat.username in configs.ignore_links:
+            return
         admins_list = [admin.user.id for admin in await bot.get_chat_administrators(chat_id=message.chat.id)]
-        admins_list += [1322215888, 1782466917]
         if message.from_user.id not in admins_list:
             if message.text.find("wiki") == -1:
                 if '@' in message.text:  # Удаление сообщений с тегами (@тег)
