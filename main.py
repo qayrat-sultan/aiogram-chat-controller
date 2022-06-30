@@ -33,7 +33,7 @@ async def cmd_start(message: types.Message):
 async def deleting_messages(msg: types.Message):
     if msg.new_chat_members:
         await msg.answer("""Ushbu guruhga xush kelibsiz, <a href="tg://user?id={}">{}</a>\n
-Iltimos, WikiStipendiya marafoni haqida <a href="https://www.youtube.com/c/UzWiki">ushbu havola</a> orqali 
+Iltimos, WikiStipendiya marafoni haqida <a href="https://youtube.com/playlist?list=PLTiLidqsHkJMY1CSQiUuweKqly5LmYp_L">ushbu havola</a> orqali 
 tanishib chiqing""".
                          format(msg.new_chat_members[0].id, msg.from_user.full_name),
                          parse_mode="HTML")
