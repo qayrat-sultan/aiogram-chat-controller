@@ -28,15 +28,26 @@ async def cmd_start(message: types.Message):
                            format(user=message.from_user.full_name))
 
 
-@dp.message_handler(content_types=['new_chat_members', 'left_chat_member', 'new_chat_title', 'new_chat_photo',
-                                   'delete_chat_photo'])
+@dp.message_handler(content_types=['new_chat_members', 'left_chat_member'])
 async def deleting_messages(msg: types.Message):
     if msg.new_chat_members:
-        await msg.answer("""Ushbu guruhga xush kelibsiz, <a href="tg://user?id={}">{}</a>\n
-Iltimos, WikiStipendiya marafoni haqida <a href="https://youtube.com/playlist?list=PLTiLidqsHkJMY1CSQiUuweKqly5LmYp_L">ushbu havola</a> orqali 
-tanishib chiqing""".
-                         format(msg.new_chat_members[0].id, msg.from_user.full_name),
-                         parse_mode="HTML")
+        if msg.chat.username == "wikiayollaruz":
+            await msg.answer("""Ushbu guruhga xush kelibsiz, <a href="tg://user?id={}">{}</a>\n
+            Iltimos, WikiStipendiya marafoni haqida <a href="https://youtube.com/playlist?list=PLTiLidqsHkJMY1CSQiUuweKqly5LmYp_L">ushbu havola</a> orqali 
+            tanishib chiqing.
+            
+            <a href="https://uz.wikipedia.org/wiki/Vikipediya:WikiStipendiya_marafoni/WikiAyollar"> WikiAyollar sahifasi</a>
+            
+            Loyiha doirasida yaratgan maqolalaringizni <a href="https://fountain.toolforge.org/editathons/wikiayollar">ushbu havola</a> orqali kiriting 
+            """.
+                             format(msg.new_chat_members[0].id, msg.from_user.full_name),
+                             parse_mode="HTML")
+        else:
+            await msg.answer("""Ushbu guruhga xush kelibsiz, <a href="tg://user?id={}">{}</a>\n
+    Iltimos, WikiStipendiya marafoni haqida <a href="https://youtube.com/playlist?list=PLTiLidqsHkJMY1CSQiUuweKqly5LmYp_L">ushbu havola</a> orqali 
+    tanishib chiqing""".
+                             format(msg.new_chat_members[0].id, msg.from_user.full_name),
+                             parse_mode="HTML")
     await msg.delete()
 
 
