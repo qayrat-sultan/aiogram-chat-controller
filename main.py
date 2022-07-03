@@ -61,6 +61,8 @@ async def some_text(message: types.Message):
     if message.chat.type == 'private':
         await message.answer("Iltimos, qandaydir savolingiz bo'lsa @uzwikichat da yozib qoldirsangiz!")
     else:
+        if message.chat.username == "wikiayollaruz":
+            return
         if message.forward_from_chat and message.forward_from_chat.username in configs.ignore_links:
             return
         admins_list = [admin.user.id for admin in await bot.get_chat_administrators(chat_id=message.chat.id)]
