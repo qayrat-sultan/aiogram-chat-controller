@@ -56,6 +56,13 @@ async def some_error(msg, error):
     logging.error("ERROR {} {}".format(error, msg))
 
 
+@dp.message_handler(content_types=["voice"])
+async def ban_sms_content(message: types.Message):
+    await message.answer("{} \nIltimos, ovozli xabar yozmang!".format(message.from_user.get_mention()),
+                         parse_mode="HTML")
+    await message.delete()
+
+
 @dp.message_handler()
 async def some_text(message: types.Message):
     if message.chat.type == 'private':
