@@ -57,7 +57,7 @@ async def some_error(msg, error):
 
 
 @dp.message_handler(content_types=["sticker", "animation"])
-async def deleted_message(message: Message):
+async def deleted_message(message: types.Message):
     if message.chat.type == 'private':
         return await message.answer(help_text)
     admins_list = [admin.user.id for admin in await bot.get_chat_administrators(chat_id=message.chat.id)]
