@@ -56,6 +56,15 @@ async def some_error(msg, error):
     logging.error("ERROR {} {}".format(error, msg))
 
 
+@dp.message_handler(content_types=["sticker", "animation"])
+async def deleted_message(message: Message):
+    if message.chat.type == 'private':
+        return await message.answer(help_text)
+    admins_list = [admin.user.id for admin in await bot.get_chat_administrators(chat_id=message.chat.id)]
+    if message.from_user.id not in admins_list:
+        await message.delete()
+
+
 @dp.message_handler(content_types=["voice"])
 async def ban_sms_content(message: types.Message):
     await message.answer("{} \nIltimos, ovozli xabar yozmang!".format(message.from_user.get_mention()),
