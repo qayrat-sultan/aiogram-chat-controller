@@ -76,24 +76,24 @@ async def ban_sms_content(message: types.Message):
 async def some_text(message: types.Message):
     if message.chat.type == 'private':
         await message.answer("Iltimos, qandaydir savolingiz bo'lsa @uzwikichat da yozib qoldirsangiz!")
-    else:
-        if message.chat.username == "wikiayollaruz":
-            return
-        if message.forward_from_chat and message.forward_from_chat.username in configs.ignore_links:
-            return
-        admins_list = [admin.user.id for admin in await bot.get_chat_administrators(chat_id=message.chat.id)]
-        if message.from_user.id not in admins_list:
-            if message.text.find("wiki") == -1:
-                if '@' in message.text:  # Удаление сообщений с тегами (@тег)
-                    await message.answer("{} \nIltimos, reklama tarqatmang!".format(message.from_user.get_mention()),
-                                         parse_mode="HTML")
-                    await message.delete()
-
-                for entity in message.entities:  # Удаление сообщений с ссылками
-                    if entity.type in ["url", "text_link"]:
-                        await message.answer("{} \nIltimos, reklama tarqatmang!".format(message.from_user.get_mention()),
-                                             parse_mode="HTML")
-                        await message.delete()
+#    else:
+#        if message.chat.username == "wikiayollaruz":
+#            return
+#        if message.forward_from_chat and message.forward_from_chat.username in configs.ignore_links:
+#            return
+#        admins_list = [admin.user.id for admin in await bot.get_chat_administrators(chat_id=message.chat.id)]
+#        if message.from_user.id not in admins_list:
+#            if message.text.find("wiki") == -1:
+#                if '@' in message.text:  # Удаление сообщений с тегами (@тег)
+#                    await message.answer("{} \nIltimos, reklama tarqatmang!".format(message.from_user.get_mention()),
+#                                         parse_mode="HTML")
+#                    await message.delete()
+#
+#                for entity in message.entities:  # Удаление сообщений с ссылками
+#                    if entity.type in ["url", "text_link"]:
+#                       await message.answer("{} \nIltimos, reklama tarqatmang!".format(message.from_user.get_mention()),
+#                                             parse_mode="HTML")
+#                        await message.delete()
 
 
 if __name__ == '__main__':
